@@ -70,4 +70,17 @@ This project is licensed under the MIT License. See the [LICENSE](LICENSE) file 
 
 ## Acknowledgments
 - Built with [Streamlit](https://streamlit.io/) and [Pandas](https://pandas.pydata.org/).
-- Powered by [Google Gemini 1.5 Flash](https://cloud.google.com/).
+- Powered by [Google Gemini 2.5 Flash](https://cloud.google.com/).
+
+## Future Scope
+
+- **Conversational History**: Maintain a message thread so users can refine queries in context (e.g., "now sort that by date").
+- **Multi-File Support**: Allow joining across two uploaded files.
+- **Query History Panel**: Add a sidebar log of past queries and their results within a session.
+- **LLM Provider Swap**: Abstract the generation layer to support other models like OpenAI or Anthropic.
+- **CSV Export Option**: Provide an alternative export format alongside Excel.
+- **Enhanced Security**: Implement stricter validation for generated code to prevent misuse.
+- **Performance Optimization**: Improve handling of large datasets (e.g., 1M+ rows) for faster processing.
+- **Customizable Prompts**: Allow users to modify the system prompt for tailored query handling.
+- **Integration with Databases**: Extend support to query SQL databases directly.
+- **Cloud Deployment**: Offer deployment options for hosting the app on platforms like AWS, GCP, or Azure.
