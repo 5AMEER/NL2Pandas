@@ -1,48 +1,73 @@
 # NL2Pandas
 
-Minimal Streamlit app that converts natural language queries into executable Pandas code using Gemini 1.5 Flash and runs it locally against uploaded Excel data.
+NL2Pandas is a minimal Streamlit application that converts natural language queries into executable Pandas code using Gemini 2.5 Flash. It allows users to analyze and manipulate uploaded Excel data locally.
 
 ## Features
-- Excel-only upload (`.xlsx`)
-- Two-pane UI (left metadata panel, right chat interface)
-- Secure execution guardrails:
-  - Forbidden keyword scan
-  - `exec` with empty builtins
-  - Threaded timeout (10s)
-  - Enforced `ans` contract
-- Result preview and Excel export
-- Debug expander for raw response, cleaned code, and errors
+- **Excel Uploads Only**: Supports `.xlsx` files.
+- **Two-Pane UI**: Metadata panel on the left, chat interface on the right.
+- **Secure Execution**:
+  - Forbidden keyword scan.
+  - `exec` with empty builtins.
+  - Threaded timeout (10 seconds).
+  - Enforced `ans` contract for results.
+- **Result Preview and Export**: View results in the app and export them as Excel files.
+- **Debugging Tools**: Expandable debug panel for raw responses, cleaned code, and errors.
 
 ## Project Structure
-- `ui.py`: Streamlit entrypoint and UI orchestration
-- `nl2pandas/config.py`: app constants and environment settings
-- `nl2pandas/data_observer.py`: file loading and metadata extraction
-- `nl2pandas/llm.py`: Gemini prompt + generation wrapper
-- `nl2pandas/security.py`: markdown stripping, guardrails, safe execution
-- `nl2pandas/exporters.py`: Excel export utility
+- `ui.py`: Streamlit entrypoint and UI orchestration.
+- `nl2pandas/config.py`: App constants and environment settings.
+- `nl2pandas/data_observer.py`: File loading and metadata extraction.
+- `nl2pandas/llm.py`: Gemini prompt and generation wrapper.
+- `nl2pandas/security.py`: Markdown stripping, guardrails, and safe execution.
+- `nl2pandas/exporters.py`: Excel export utility.
 
 ## Setup
-```bash
-python3 -m venv .venv
-source .venv/bin/activate
-pip install -r requirements.txt
-```
 
-Set up the `.env` file:
-1. Create a `.env` file in the project root:
+### Prerequisites
+- Python 3.8+
+- [Google Cloud API Key](https://console.cloud.google.com/) with access to the Generative Language API.
+
+### Installation
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/5AMEER/NL2Pandas.git
+   cd NL2Pandas
+   ```
+2. Create and activate a virtual environment:
+   ```bash
+   python3 -m venv .venv
+   source .venv/bin/activate
+   ```
+3. Install dependencies:
+   ```bash
+   pip install -r requirements.txt
+   ```
+4. Set up the `.env` file:
    ```bash
    touch .env
    ```
-2. Add your API key to the `.env` file:
+   Add your API key to the `.env` file:
    ```env
    GEMINI_API_KEY=your_api_key_here
    ```
 
-## Run
-```bash
-streamlit run ui.py
-```
+## Usage
+1. Run the Streamlit app:
+   ```bash
+   streamlit run ui.py
+   ```
+2. Upload an Excel file and ask questions about your data in natural language.
 
 ## Notes
 - Query handling is single-turn (no conversational history).
 - Uploaded source DataFrame is kept immutable; execution always uses `df.copy()`.
+
+## Contributing
+Contributions are welcome! Please fork the repository and submit a pull request.
+
+## License
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
+
+## Acknowledgments
+- Built with [Streamlit](https://streamlit.io/) and [Pandas](https://pandas.pydata.org/).
+- Powered by [Google Gemini 1.5 Flash](https://cloud.google.com/).
